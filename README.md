@@ -10,7 +10,7 @@ Automated email dispatch: Based on the instruction and data lookup, the agent se
 No-code/low-code architecture: Built using n8n’s visual workflows for rapid prototyping and simplicity.
 
 Why this matters
-With this setup you can automate everyday tasks like “Send the latest sales summary to Jane,” or “Email the monthly report to manager X,” by simply chatting with the agent. It brings together conversational AI, data lookup, and email automation—all in under X minutes to deploy.
+With this setup you can automate everyday tasks like “Send the latest sales summary to Jane,” or “Email the monthly report to manager X,” by simply chatting with the agent. It brings together conversational AI, data lookup, and email automation-all in under X minutes to deploy.
 
 What you’ll find in this repo
 n8n workflow JSON export
