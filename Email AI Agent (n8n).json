@@ -1,0 +1,194 @@
+{
+  "name": "First AI Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -384,
+        0
+      ],
+      "id": "a2ec4a0e-2e57-468b-bd3c-710fa690be22",
+      "name": "When chat message received",
+      "webhookId": "29853059-f91b-4b2b-96af-146c59aa7294"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a helpful assistant"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        -48,
+        0
+      ],
+      "id": "35f18a63-8b68-4e83-9ba6-6c9f436aa60a",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        192
+      ],
+      "id": "4560516b-ecb3-4883-9e63-0f06806addec",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        224
+      ],
+      "id": "548bdcc5-dc6a-4a26-ad68-74fc8d38ba05",
+      "name": "GPT-4.1-mini",
+      "credentials": {
+        "openRouterApi": {
+          "id": "25PYKkkOufzPZoFC",
+          "name": "OpenRouter account new"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1-lJ5JSYHrDbpwdOr3BcpguplOwzHFhdkNy3FbxahsOc",
+          "mode": "list",
+          "cachedResultName": "Contant Details",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-lJ5JSYHrDbpwdOr3BcpguplOwzHFhdkNy3FbxahsOc/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-lJ5JSYHrDbpwdOr3BcpguplOwzHFhdkNy3FbxahsOc/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        144,
+        208
+      ],
+      "id": "df536582-bc7c-41a4-be76-4d275efc452e",
+      "name": "Database",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "8AWB19J97SmDhifx",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Send a message in Gmail",
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "emailType": "text",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', `Dear Recipient,\n\nBody of the email....\n\nThanks and Regards,\nRushab Kumar Jha`, 'string') }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        304,
+        208
+      ],
+      "id": "c24422b1-28d5-4a9d-8488-dc92369698f7",
+      "name": "Send a message in Gmail",
+      "webhookId": "c2417593-ce27-481d-9632-219c00f1641e",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "bpQhwSYkKzGdMtqX",
+          "name": "Gmail account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT-4.1-mini": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Database": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d1b93035-35de-4c73-84ef-1f1fca28bb78",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1a4310b424687875ee71ca03eba7391356727f11515130f8e42e7b0dc6d43cea"
+  },
+  "id": "oW9wGNwtRBxFmv3Q",
+  "tags": []
+}
